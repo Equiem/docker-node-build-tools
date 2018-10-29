@@ -3,8 +3,7 @@ FROM node:8.12-jessie
 WORKDIR /usr/src
 ENV DOCKER_VERSION 18.06.1-ce 
 
-RUN npm install -g npm@6.4.1
-RUN npm install -g heroku
+RUN curl https://cli-assets.heroku.com/install.sh | sh
 RUN echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > $HOME/.npmrc
 
 RUN apt-get update
