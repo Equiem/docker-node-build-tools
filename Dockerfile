@@ -1,4 +1,4 @@
-FROM node:8-jessie
+FROM node:8.12-jessie
 
 WORKDIR /usr/src
 
