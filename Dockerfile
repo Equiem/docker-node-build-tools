@@ -1,4 +1,4 @@
-FROM node:8.12-jessie
+FROM node:8.14-jessie
 
 WORKDIR /usr/src
 ENV DOCKER_VERSION 18.06.1-ce 
