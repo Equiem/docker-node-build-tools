@@ -1,4 +1,4 @@
-FROM node:8.14-jessie
+FROM node:10.16-jessie
 
 WORKDIR /usr/src
 ENV DOCKER_VERSION 18.06.1-ce 
@@ -8,7 +8,7 @@ RUN curl https://cli-assets.heroku.com/install.sh | sh
 RUN echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > $HOME/.npmrc
 
 RUN apt-get update
-RUN apt-get install zip unzip jq
+RUN apt-get install -y zip unzip jq
 
 # Install docker.
 RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz
