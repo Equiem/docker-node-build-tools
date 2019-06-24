@@ -1,16 +1,20 @@
-FROM node:8.14-jessie
+FROM node:10.16-jessie
 
 WORKDIR /usr/src
-ENV DOCKER_VERSION 18.06.1-ce 
+ENV DOCKER_VERSION=18.06.1-ce \
+    YQ_VERSION=2.4.0
 
-RUN npm install -g graphql-cli wait-on
-RUN curl https://cli-assets.heroku.com/install.sh | sh
-RUN echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > $HOME/.npmrc
+COPY npmrc /root/.npmrc
 
-RUN apt-get update
-RUN apt-get install zip unzip jq
+RUN apt-get update && \
+    apt-get install -y zip unzip jq && \
+    curl -L -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_linux_amd64 && \
+    chmod a+x /usr/local/bin/yq && \
+    npm install -g graphql-cli wait-on && \
+    curl https://cli-assets.heroku.com/install.sh | sh
 
 # Install docker.
-RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz
-RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_VERSION.tgz
-RUN mv /tmp/docker/* /usr/bin
+RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz && \
+    tar -xz -C /tmp -f /tmp/docker-$DOCKER_VERSION.tgz && \
+    mv /tmp/docker/* /usr/bin && \
+    rm /tmp/docker-$DOCKER_VERSION.tgz
