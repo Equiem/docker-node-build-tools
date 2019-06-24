@@ -4,7 +4,7 @@ WORKDIR /usr/src
 ENV DOCKER_VERSION=18.06.1-ce \
     YQ_VERSION=2.4.0
 
-COPY npmrc $HOME/.npmrc
+COPY npmrc /root/.npmrc
 
 RUN apt-get update && \
     apt-get install -y zip unzip jq && \
