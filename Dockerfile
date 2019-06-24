@@ -11,6 +11,7 @@ RUN apt-get update
 RUN apt-get install -y zip unzip jq
 
 # Install docker.
-RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz
-RUN tar -xz -C /tmp -f /tmp/docker-$DOCKER_VERSION.tgz
-RUN mv /tmp/docker/* /usr/bin
+RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz && \
+    tar -xz -C /tmp -f /tmp/docker-$DOCKER_VERSION.tgz && \
+    mv /tmp/docker/* /usr/bin && \
+    rm /tmp/docker-$DOCKER_VERSION.tgz
