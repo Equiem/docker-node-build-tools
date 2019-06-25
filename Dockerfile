@@ -4,8 +4,6 @@ WORKDIR /usr/src
 ENV DOCKER_VERSION=18.06.1-ce \
     YQ_VERSION=2.4.0
 
-COPY npmrc /root/.npmrc
-
 RUN apt-get update && \
     apt-get install -y zip unzip jq && \
     curl -L -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_linux_amd64 && \
@@ -18,3 +16,5 @@ RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux
     tar -xz -C /tmp -f /tmp/docker-$DOCKER_VERSION.tgz && \
     mv /tmp/docker/* /usr/bin && \
     rm /tmp/docker-$DOCKER_VERSION.tgz
+
+COPY npmrc /root/.npmrc
