@@ -5,10 +5,11 @@ ENV DOCKER_VERSION=18.06.1-ce \
     YQ_VERSION=2.4.0
 
 RUN apt-get update && \
-    apt-get install -y zip unzip jq && \
+    apt-get install -y zip unzip jq python3 python3-pip && \
     curl -L -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_linux_amd64 && \
     chmod a+x /usr/local/bin/yq && \
     npm install -g graphql-cli wait-on && \
+    pip3 install awscli --upgrade && \
     curl https://cli-assets.heroku.com/install.sh | sh
 
 # Install docker.
