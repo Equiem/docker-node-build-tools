@@ -1,4 +1,4 @@
-FROM node:12.13-buster
+FROM node:12.13
 
 WORKDIR /usr/src
 ENV DOCKER_VERSION=18.06.1-ce \
