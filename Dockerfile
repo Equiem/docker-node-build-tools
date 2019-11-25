@@ -1,7 +1,7 @@
 FROM node:12.13
 
 WORKDIR /usr/src
-ENV DOCKER_VERSION=19.03.5-ce \
+ENV DOCKER_VERSION=19.03.4-ce \
     YQ_VERSION=2.4.0
 
 RUN apt-get update && \
