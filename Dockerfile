@@ -19,3 +19,4 @@ RUN curl -L -o /tmp/docker-$DOCKER_VERSION.tgz https://download.docker.com/linux
     rm /tmp/docker-$DOCKER_VERSION.tgz
 
 COPY npmrc /root/.npmrc
+COPY bin /usr/bin
