@@ -7,7 +7,7 @@ function poll {
   local success_status=$4
 
   local i=0
-  local retries=20
+  local retries=${5:-20}
 
   echo -n "Polling for ${subject} "
   while [[ $i != $retries ]]
@@ -49,5 +49,13 @@ function is_running {
 
 function has_deployed {
   local app=$1
-  has_released $app && is_running $app
+  has_released $app && is_running $app || return 1
+
+  echo "Application started, waiting to verify it stayed running..."
+  sleep 60
+
+  poll "verifying release" \
+    "heroku ps --json -a $app" \
+    "jq -r '.[].state'" \
+    "up" 1
 }
