@@ -1,8 +1,8 @@
-FROM node:12.13
+FROM node:14
 
 WORKDIR /usr/src
 ENV DOCKER_VERSION=20.10.8 \
-    YQ_VERSION=2.4.0
+    YQ_VERSION=4.13.4
 
 RUN apt-get update && \
     apt-get install -y zip unzip jq python3 python3-pip && \
